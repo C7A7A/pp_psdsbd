@@ -1,0 +1,35 @@
+- select name, ibu from beers_orc order by ibu desc limit 3;
+
+- select avg(abv) from beers_orc;
+
+- select style, avg(abv) from beers_orc group by (style) order by avg(abv) desc limit 4;
+
+- select city, max(abv) 
+from beers_orc bee
+join breweries_orc bre 
+on bee.brewery_id = bre.id
+group by city
+order by max(abv) desc
+limit 1;
+
+- select sta.name, bee.name, max(ibu)
+from beers_orc bee
+join breweries_orc bre
+on bee.brewery_id = bre.id
+join states_orc sta
+on bre.state = sta.abbrev
+group by sta.name, bee.name
+order by max(ibu) desc
+limit 3;
+
+- select count(beer.line)/state.population as beer_density, state.name
+from beers_orc beer
+join breweries_orc brewery 
+on brewery.id = beer.brewery_id
+join states_orc state 
+on brewery.state = state.abbrev
+group by state.name, state.population
+order by beer_density desc
+limit 1;
+
+
