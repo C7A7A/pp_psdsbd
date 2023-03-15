@@ -14,6 +14,8 @@ import net.datafaker.fileformats.Format;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class EsperClient {
@@ -35,13 +37,7 @@ public class EsperClient {
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         EPCompiled epCompiled;
         try {
-            epCompiled = compiler.compile("""
-                    @public @buseventtype create json schema ScoreEvent(house string, character string, score int, ts string);
-                    @name('result')
-                        select house, character, score, avg(score) as avgScore
-                        from ScoreEvent#length(10)
-                        having score > avg(score);""",
-                    compilerArgs);
+            epCompiled = selectMountainEvents(compilerArgs, compiler);
         }
 
         catch (EPCompileException ex) {
@@ -75,18 +71,69 @@ public class EsperClient {
         long startTime = System.currentTimeMillis();
         while (System.currentTimeMillis() < startTime + (1000L * howLongInSec)) {
             for (int i = 0; i < noOfRecordsPerSec; i++) {
-                String house = faker.harryPotter().house();
-                Timestamp timestamp = faker.date().past(30, TimeUnit.SECONDS);
-                record = Format.toJson()
-                        .set("house", () -> house)
-                        .set("character", () -> faker.harryPotter().character())
-                        .set("score", () -> String.valueOf(faker.number().randomDigitNotZero()))
-                        .set("ts", () -> timestamp.toString())
-                        .build().generate();
-                runtime.getEventService().sendEventJson(record, "ScoreEvent");
+                generateMountainEventData(runtime, faker);
             }
             waitToEpoch();
         }
+    }
+
+    private static void generateScoreEventData(EPRuntime runtime, Faker faker) {
+        String record;
+        String house = faker.harryPotter().house();
+        Timestamp timestamp = faker.date().past(30, TimeUnit.SECONDS);
+        record = Format.toJson()
+                .set("house", () -> house)
+                .set("character", () -> faker.harryPotter().character())
+                .set("score", () -> String.valueOf(faker.number().randomDigitNotZero()))
+                .set("ts", timestamp::toString)
+                .build().generate();
+        runtime.getEventService().sendEventJson(record, "ScoreEvent");
+    }
+
+    private static void generateMountainEventData(EPRuntime runtime, Faker faker) {
+        Random random = new Random();
+        ArrayList<String> possibleResults = new ArrayList<>() {
+            {
+                add("summit reached");
+                add("base reached");
+                add("resignation injury");
+                add("resignation weather");
+                add("resignation someone missing");
+                add("resignation other");
+            }
+        };
+
+        String record;
+        String name = faker.mountain().name();
+        String mountaineer = faker.mountaineering().mountaineer();
+        Timestamp timestamp = faker.date().past(30, TimeUnit.SECONDS);
+
+        record = Format.toJson()
+                .set("peak_name", () -> name)
+                .set("trip_leader", () -> mountaineer)
+                .set("result", () -> possibleResults.get(random.nextInt(possibleResults.size())))
+                .set("amount_people", () -> random.nextInt(12) + 1)
+                .set("ts", timestamp::toString)
+                .build()
+                .generate();
+        runtime.getEventService().sendEventJson(record, "MountainEvent");
+    }
+
+    private static EPCompiled selectScoreEvents(CompilerArguments compilerArgs, EPCompiler compiler) throws EPCompileException {
+        return compiler.compile("""
+                        @public @buseventtype create json schema ScoreEvent(house string, character string, score int, ts string);
+                        @name('result')
+                            select house, character, score, avg(score) as avgScore
+                            from ScoreEvent#length(10)
+                            having score > avg(score);""", compilerArgs);
+    }
+
+    private static EPCompiled selectMountainEvents(CompilerArguments compilerArgs, EPCompiler compiler) throws EPCompileException {
+        return compiler.compile("""
+                @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+                @name('result')
+                    select * from MountainEvent;
+                """, compilerArgs);
     }
 
     static void waitToEpoch() throws InterruptedException {
