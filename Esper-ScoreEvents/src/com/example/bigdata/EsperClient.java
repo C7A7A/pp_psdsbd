@@ -23,8 +23,8 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 20;
-            howLongInSec = 30;
+            noOfRecordsPerSec = 5;
+            howLongInSec = 5;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
             howLongInSec = Integer.parseInt(args[1]);
@@ -36,8 +36,38 @@ public class EsperClient {
         // Compile the EPL statement
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         EPCompiled epCompiled;
+        /*
+        1. Pokazuj informację jaka jest średnia liczba uczestników wypraw, którym udało się wejść na szczyt lub zdobyć bazę w ciągu ostatnich 10 sekund.
+            """
+            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+            @name('result')
+                select amount_people, result, avg(amount_people) as average_people
+                from MountainEvent(result IN ('summit-reached', 'base-reached'))#time(10);"""
+
+        2. Wykrywaj przypadki rezygnacji ze wspinaczki z powodu zaginięcia (resignation someone missing) dla wypraw, w których bierze udział mniej niż 3 osoby
+            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+            @name('result')
+                select peak_name, trip_leader, result, amount_people
+                from MountainEvent(result = "resignation-someone-missing")#length(10)
+                having amount_people < 3;"""
+
+        3. Wykrywaj przypadki rezygnacji ze wspinaczki dla grup, w których jest więcej osób niż średnia osób ze wszystkich grup.
+            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+            @name('result')
+                select peak_name, trip_leader, result, amount_people, avg(amount_people) as average_people
+                from MountainEvent(result IN ("resignation-someone-missing", "resignation-injury", "resignation-weather", "resignation-someone-missing"))
+                having amount_people > avg(amount_people);"""
+
+        4. Wykrywaj
+        */
         try {
-            epCompiled = selectMountainEvents(compilerArgs, compiler);
+            epCompiled = compiler.compile("""
+                @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+                @name('result')
+                    select peak_name, trip_leader, result, amount_people, avg(amount_people) as average_people
+                    from MountainEvent(result IN ("resignation-someone-missing", "resignation-injury", "resignation-weather", "resignation-someone-missing"))
+                    having amount_people > avg(amount_people);
+                """, compilerArgs);
         }
 
         catch (EPCompileException ex) {
