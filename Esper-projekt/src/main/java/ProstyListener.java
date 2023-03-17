@@ -5,15 +5,17 @@ import com.espertech.esper.runtime.client.UpdateListener;
 
 public class ProstyListener implements UpdateListener {
     @Override
-    public void update(EventBean[] newEvents, EventBean[] oldEvents, EPStatement epStatement, EPRuntime epRuntime) {
+    public void update(EventBean[] newEvents, EventBean[] oldEvents,
+                       EPStatement statement, EPRuntime runtime) {
+        int now = (int)(System.currentTimeMillis() % 10000);
         if (newEvents != null) {
             for (EventBean newEvent : newEvents) {
-                System.out.println("ISTREAM : " + newEvent.getUnderlying());
+                System.out.println(now + ": ISTREAM : " + newEvent.getUnderlying());
             }
         }
         if (oldEvents != null) {
             for (EventBean oldEvent : oldEvents) {
-                System.out.println("RSTREAM : " + oldEvent.getUnderlying());
+                System.out.println(now + ": RSTREAM : " + oldEvent.getUnderlying());
             }
         }
     }

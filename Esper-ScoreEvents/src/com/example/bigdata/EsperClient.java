@@ -94,12 +94,12 @@ public class EsperClient {
         Random random = new Random();
         ArrayList<String> possibleResults = new ArrayList<>() {
             {
-                add("summit reached");
-                add("base reached");
-                add("resignation injury");
-                add("resignation weather");
-                add("resignation someone missing");
-                add("resignation other");
+                add("summit-reached");
+                add("base-reached");
+                add("resignation-injury");
+                add("resignation-weather");
+                add("resignation-someone-missing");
+                add("resignation-other");
             }
         };
 
