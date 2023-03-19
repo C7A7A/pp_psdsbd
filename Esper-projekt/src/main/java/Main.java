@@ -14,14 +14,19 @@ public class Main {
         configuration.getCommon().addEventType(KursAkcji.class);
         EPRuntime epRuntime = EPRuntimeProvider.getDefaultRuntime(configuration);
 
-//        EPDeployment deployment = compileAndDeploy(epRuntime,"""
-//        select istream data, spolka, kursOtwarcia - prev(kursOtwarcia) as roznica
-//        from KursAkcji(spolka='Oracle')#length(5)
-//        having kursOtwarcia - prev(kursOtwarcia) > 0;""");
+        /*
+        1.
+        select istream data, spolka, kursZamkniecia, max(kursZamkniecia) - kursZamkniecia as roznica
+        from KursAkcji#ext_timed_batch(data.getTime(), 1 days);"""
+
+        2.
+        """select istream data, spolka, kursZamkniecia, max(kursZamkniecia) - kursZamkniecia as roznica
+        from KursAkcji(spolka in ('IBM', 'Honda', 'Microsoft'))#ext_timed_batch(data.getTime(), 1 days);"""
+        */
 
         String query = """
-        select irstream data, kursZamkniecia, max(kursZamkniecia)
-        from KursAkcji(spolka = 'Oracle')#ext_timed_batch(data.getTime(), 7 days);""";
+        select istream data, spolka, kursZamkniecia, max(kursZamkniecia) - kursZamkniecia as roznica
+        from KursAkcji(spolka in ('IBM', 'Honda', 'Microsoft'))#ext_timed_batch(data.getTime(), 1 days);""";
 
         EPDeployment deployment = compileAndDeploy(epRuntime, query);
 
