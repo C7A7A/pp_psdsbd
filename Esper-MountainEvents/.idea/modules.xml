@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Esper-tests.iml" filepath="$PROJECT_DIR$/Esper-tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Esper-MountainEvents.iml" filepath="$PROJECT_DIR$/Esper-MountainEvents.iml" />
     </modules>
   </component>
 </project>

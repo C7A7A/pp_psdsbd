@@ -10,7 +10,6 @@ import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
 import net.datafaker.Faker;
 import net.datafaker.fileformats.Format;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -23,8 +22,8 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 5;
-            howLongInSec = 5;
+            noOfRecordsPerSec = 30;
+            howLongInSec = 10;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
             howLongInSec = Integer.parseInt(args[1]);
@@ -37,12 +36,14 @@ public class EsperClient {
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         EPCompiled epCompiled;
         /*
-        1. Pokazuj informację jaka jest średnia liczba uczestników wypraw, którym udało się wejść na szczyt lub zdobyć bazę w ciągu ostatnich 10 sekund.
+        1. Pokazuj informację ilu osobom udało się wejść na szczyt lub zdobyć bazę w ciągu ostatnich 10 sekund dodatkowo grupując dane po rezultacie wyprawy.
             """
             @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
             @name('result')
-                select amount_people, result, avg(amount_people) as average_people
-                from MountainEvent(result IN ('summit-reached', 'base-reached'))#time(10);"""
+                select amount_people, result, sum(amount_people) as sum_people, ts
+                from MountainEvent(result IN ('summit-reached', 'base-reached'))#time(10)
+                group by result;
+                """
 
         2. Wykrywaj przypadki rezygnacji ze wspinaczki z powodu zaginięcia (resignation someone missing) dla wypraw, w których bierze udział mniej niż 3 osoby
             @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
@@ -51,22 +52,47 @@ public class EsperClient {
                 from MountainEvent(result = "resignation-someone-missing")#length(10)
                 having amount_people < 3;"""
 
-        3. Wykrywaj przypadki rezygnacji ze wspinaczki dla grup, w których jest więcej osób niż średnia osób ze wszystkich grup.
+        3. Wykrywaj przypadki rezygnacji ze wspinaczki dla grup, w których liczba osób jest największa w ostatnich 20 wyprawach (batch)
+            """
             @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
             @name('result')
-                select peak_name, trip_leader, result, amount_people, avg(amount_people) as average_people
-                from MountainEvent(result IN ("resignation-someone-missing", "resignation-injury", "resignation-weather", "resignation-someone-missing"))
-                having amount_people > avg(amount_people);"""
+                select peak_name, trip_leader, result, amount_people, max(amount_people) as max_people, ts
+                from MountainEvent(result IN ("resignation-someone-missing", "resignation-injury", "resignation-weather", "resignation-other"))
+                    #length_batch(20)
+                having max(amount_people) = amount_people;"""
 
-        4. Wykrywaj
+        4. Dla każdego alpinisty (istnieje 10 alpinistów w zbiorze danych) znajdź pierwszą wyprawę, która zakończyła się kontuzją.
+        Następnie wykrywaj każdą kolejną wyprawę, która zakończyła się kontuzją oraz w wyprawie wzięło udział więcej osób niż w pierwszej nieudanej wyprawie.
+            """
+           @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+            @name('createWindow')
+                create window MountainEventFirstFailed#length(10) as MountainEvent;
+
+            @name('fillWindow')
+                insert into MountainEventFirstFailed
+                select *
+                from MountainEvent(result = "resignation-injury")#firstunique(trip_leader);
+
+            @name('result')
+                select meff.trip_leader, meff.result, meff.amount_people, me.trip_leader, me.amount_people
+                from MountainEvent(result = "resignation-injury")#length(1) as me, MountainEventFirstFailed as meff
+                where me.amount_people > meff.amount_people and me.trip_leader = meff.trip_leader;"""
         */
         try {
             epCompiled = compiler.compile("""
-                @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
-                @name('result')
-                    select peak_name, trip_leader, result, amount_people, avg(amount_people) as average_people
-                    from MountainEvent(result IN ("resignation-someone-missing", "resignation-injury", "resignation-weather", "resignation-someone-missing"))
-                    having amount_people > avg(amount_people);
+            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string);
+            @name('createWindow')
+                create window MountainEventFirstFailed#length(10) as MountainEvent;
+                
+            @name('fillWindow')
+                insert into MountainEventFirstFailed
+                select *
+                from MountainEvent(result = "resignation-injury")#firstunique(trip_leader);
+                
+            @name('result')
+                select meff.trip_leader, meff.result, meff.amount_people, me.trip_leader, me.amount_people
+                from MountainEvent(result = "resignation-injury")#length(1) as me, MountainEventFirstFailed as meff
+                where me.amount_people > meff.amount_people and me.trip_leader = meff.trip_leader;
                 """, compilerArgs);
         }
 
@@ -87,8 +113,22 @@ public class EsperClient {
         }
 
         EPStatement resultStatement = runtime.getDeploymentService().getStatement(deployment.getDeploymentId(), "result");
+//        EPStatement resultStatement2 = runtime.getDeploymentService().getStatement(deployment.getDeploymentId(), "result2");
+//        EPStatement resultStatement3 = runtime.getDeploymentService().getStatement(deployment.getDeploymentId(), "result3");
 
         // Add a listener to the statement to handle incoming events
+//        resultStatement.addListener( (newData, oldData, stmt, runTime) -> {
+//            for (EventBean eventBean : newData) {
+//                System.out.printf("R: %s%n", eventBean.getUnderlying());
+//            }
+//        });
+//
+//        resultStatement2.addListener( (newData, oldData, stmt, runTime) -> {
+//            for (EventBean eventBean : newData) {
+//                System.out.printf("R: %s%n", eventBean.getUnderlying());
+//            }
+//        });
+
         resultStatement.addListener( (newData, oldData, stmt, runTime) -> {
             for (EventBean eventBean : newData) {
                 System.out.printf("R: %s%n", eventBean.getUnderlying());
