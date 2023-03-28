@@ -97,16 +97,48 @@ public class EsperClient {
                 B as B.price < A.price,
                 C as C.price > B.LastOf().price and C.price > prev(C.price)
             )
+
         9.
+        select * from AllTicker
+        match_recognize (
+            partition by symbol
+            measures
+                A.symbol as symbol,
+                A.price as Aprice, B.price as BPrice, C.price as CPrice,
+                A.tstamp as firstTime, B.tstamp as secondTime, C.tstamp as thirdTime
+            pattern (A B C)
+            define
+                B as B.price > A.price,
+                C as (C.price - B.price) > (B.price - A.price) * 2
+            )
 
         10.
+        @public @buseventtype create json schema Ticker(symbol string, tstamp string, price int);
 
+        create window AllTicker#length(100) as Ticker;
+        insert into AllTicker select * from Ticker;
+
+        @name('result')
+        select * from AllTicker
+        match_recognize (
+            partition by symbol
+            measures
+                A.symbol as symbol,
+                A.price as Aprice, min(B.price) as minBPrice, last(C.price) as maxCPrice, min(D.price) as minDPrice, last(E.price) as maxEPrice,
+                A.tstamp as startTime, last(E.tstamp) as stopTime
+            pattern (A B+ C+ D+ E+)
+            define
+                B as B.price < A.price and B.price < prev(B.price),
+                C as C.price > B.LastOf().price and C.price > prev(C.price),
+                D as D.price < C.LastOf().price and D.price < prev(D.price),
+                E as E.price > D.LastOf().price and E.price > prev(E.price)
+            )
         */
         try {
             epCompiled = compiler.compile("""
                     @public @buseventtype create json schema Ticker(symbol string, tstamp string, price int);
                     
-                    create window AllTicker#length(10) as Ticker;
+                    create window AllTicker#length(100) as Ticker;
                     insert into AllTicker select * from Ticker;
                     
                     @name('result')
@@ -115,12 +147,14 @@ public class EsperClient {
                         partition by symbol
                         measures
                             A.symbol as symbol,
-                            A.price as Aprice, min(B.price) as minBPrice, last(C.price) as maxCPrice,
-                            A.tstamp as startTime, last(C.tstamp) as stopTime
-                        pattern (A B+ C+)
+                            A.price as Aprice, min(B.price) as minBPrice, last(C.price) as maxCPrice, min(D.price) as minDPrice, last(E.price) as maxEPrice,
+                            A.tstamp as startTime, last(E.tstamp) as stopTime
+                        pattern (A B+ C+ D+ E+)
                         define
-                            B as B.price < A.price,
-                            C as C.price > B.LastOf().price and C.price > prev(C.price)
+                            B as B.price < A.price and B.price < prev(B.price),
+                            C as C.price > B.LastOf().price and C.price > prev(C.price),
+                            D as D.price < C.LastOf().price and D.price < prev(D.price),
+                            E as E.price > D.LastOf().price and E.price > prev(E.price)
                         )
                     """, compilerArgs);
         }
