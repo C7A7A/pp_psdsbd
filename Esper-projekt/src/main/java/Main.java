@@ -112,20 +112,19 @@ public class Main {
                 limit 3
 
         16.
-        // XD
-
-        */
-        String query = """
-                create window TopThreeInSevenDays#ext_timed_batch(data.getTime(), 7 days) as KursAkcji;
-                                
-                insert into TopThreeInSevenDays
-                select *
+        select data, spolka, obrot
                 from KursAkcji#ext_timed_batch(data.getTime(), 7 days)
                 where market = "NYSE"
                 order by obrot desc
-                limit 3;
-                            
-                select spolka, data, obrot, min(obrot) from TopThreeInSevenDays having min(obrot) = obrot;
+                limit 3 offset 3
+
+        */
+        String query = """
+                select data, spolka, obrot
+                    from KursAkcji#ext_timed_batch(data.getTime(), 7 days)
+                    where market = "NYSE"
+                    order by obrot desc
+                    limit 1 offset 2;
                 """;
         EPDeployment deployment = compileAndDeploy(epRuntime, query);
 
