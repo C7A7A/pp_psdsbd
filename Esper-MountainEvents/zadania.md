@@ -46,7 +46,7 @@ Atrybuty w każdym zdarzeniu zgodnym ze schematem `MountainEvent` mają następu
 
 # Zadania
 Opracuj rozwiązania poniższych zadań. 
-* Opieraj się strumieniu zdarzeń zgodnych ze schematem `MountainEvent`
+* Opieraj się na strumieniu zdarzeń zgodnych ze schematem `MountainEvent`
 * W każdym rozwiązaniu możesz skorzystać z jednego lub kilku poleceń EPL.
 * Ostatnie polecenie będące ostatecznym rozwiązaniem zadania musi 
   * być poleceniem `select` 
@@ -87,7 +87,7 @@ Wyniki powinny zawierać, następujące kolumny:
 - `ts` - czas rejestracji faktu zakończenia wyprawy
 
 ## Zadanie 4
-Dla każdego alpinisty (istnieje 10 alpinistów w zbiorze danych) znajdź pierwszą wyprawę, która zakończyła się kontuzją. Następnie wykrywaj każdą kolejną wyprawę, która zakończyła się kontuzją oraz w wyprawie wzięło udział więcej osób niż w pierwszej nieudanej wyprawie.
+Dla każdego alpinisty (istnieje 10 alpinistów w zbiorze danych) znajdź pierwszą wyprawę, która zakończyła się kontuzją. Następnie dla każdego alpinisty wykrywaj każdą kolejną wyprawę, która zakończyła się kontuzją oraz w wyprawie wzięło udział więcej osób niż w pierwszej nieudanej wyprawie.
 
 Wyniki powinny zawierać, następujące kolumny:
 - `first_amount_people` - liczba osób biorąca udział w pierwszej wyprawie

@@ -23,7 +23,7 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 150;
+            noOfRecordsPerSec = 15;
             howLongInSec = 5;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
@@ -39,10 +39,10 @@ public class EsperClient {
 
         try {
             epCompiled = compiler.compile("""
-            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ts string, its string);
-                
+            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ets string, its string);
+            
             @name('result')
-            select trip_leader, result, amount_people, ts from MountainEvent#length(1);
+                select * from MountainEvent#length(1);
             """, compilerArgs);
         }
 
@@ -109,7 +109,7 @@ public class EsperClient {
                 .set("trip_leader", () -> mountaineer)
                 .set("result", () -> possibleResults.get(random.nextInt(possibleResults.size())))
                 .set("amount_people", () -> random.nextInt(12) + 1)
-                .set("ts", timestamp::toString)
+                .set("ets", timestamp::toString)
                 .set("its", timestampITS::toString)
                 .build()
                 .generate();
