@@ -23,8 +23,8 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 1000;
-            howLongInSec = 6;
+            noOfRecordsPerSec = 10;
+            howLongInSec = 10;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
             howLongInSec = Integer.parseInt(args[1]);
@@ -49,29 +49,32 @@ public class EsperClient {
 
             String epl_1 = """
                     @public @buseventtype create json schema JokeEvent(
-                    character string, quote string, people_in_room int, laughing_people int, pub string, ets string, its string
+                        character string, quote string, people_in_room int, laughing_people int, pub string, ets string, its string
                     );
-                                    
-                    create table BadJokesTable(pub string primary key, its string, bad_jokes count(*));
+                    create window BadJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+                                                (people_in_room int, laughing_people int, pub string, its string, ets string);
                                         
-                    into table BadJokesTable
-                    select pub, its, count(*) as bad_jokes
-                    from JokeEvent#time_batch(2 sec)
-                    where (laughing_people * 2) < people_in_room
-                    group by pub;
-                    
-                    insert into FunJokesTable
-                    select pub, count(*) as fun_jokes, its
-                    from JokeEvent#time_batch(2 sec)
-                    where (laughing_people * 2) > people_in_room
-                    group by pub;
+                    insert into BadJokesWin
+                    select people_in_room, laughing_people, pub, its, ets
+                    from JokeEvent
+                    where (laughing_people * 2) < people_in_room;
+                                
+                    create window FunJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+                        (people_in_room int, laughing_people int, pub string, its string, ets string);
+                                
+                    insert into FunJokesWin
+                    select people_in_room, laughing_people, pub, its, ets
+                    from JokeEvent
+                    where (laughing_people * 2) > people_in_room;
                                 
                     @name('answer')
-                    select bad.pub as pub, bad.bad_jokes, fun.its as its_start, fun.fun_jokes
-                    from BadJokesTable bad
-                    left outer join FunJokesTable fun
+                    select bad.pub, min(bad.its) as its_start
+                    from BadJokesWin bad
+                    full outer join FunJokesWin fun
                     on fun.pub = bad.pub
-                    where bad.bad_jokes > fun.fun_jokes;
+                    group by bad.pub
+                    having count(bad.pub) > count(fun.pub);
+                                        
                     """;
             epCompiled = compiler.compile(epl_1, compilerArgs);
 
@@ -82,11 +85,12 @@ public class EsperClient {
         }
 
         /*
-        select fun.pub as pub, fun.its as its_start
-                        from BadJokesTable bad
-                        join FunJokesTable fun
-                        on fun.pub = bad.pub
-                        where fun.fun_jokes < bad.bad_jokes
+        select bad.pub, bad.its as its_start, count(bad.pub), count(fun.pub), fun.pub
+                    from FunJokesWin fun
+                    full outer join BadJokesWin bad
+                    on fun.pub = bad.pub
+                    group by bad.pub
+                    having count(bad.pub) > count(fun.pub);
         1.
         @name('answer')
             select character, avg(laughing_people) as avglaughing_people
@@ -99,49 +103,58 @@ public class EsperClient {
             from JokeEvent
             where laughing_people = 0;
 
-        3. TODO: 2 sekundy -> minuta
+        3.
         @name('answer')
             select character, laughing_people, its
-            from JokeEvent#time_batch(2 sec)
+            from JokeEvent#ext_timed(java.sql.Timestamp.valueOf(its).getTime(), 2 min)
             having laughing_people = max(laughing_people);
 
-        4. TODO: 2 sec -> 2 min?
-        create table BadJokesTable(pub string primary key, its string, bad_jokes count(*));
+        4.
+        create window BadJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+                                                (people_in_room int, laughing_people int, pub string, its string, ets string);
 
-        into table BadJokesTable
-        select pub, its, count(*) as bad_jokes
-        from JokeEvent#time_batch(2 sec)
-        where (laughing_people * 2) < people_in_room
-        group by pub;
+        insert into BadJokesWin
+        select people_in_room, laughing_people, pub, its, ets
+        from JokeEvent
+        where (laughing_people * 2) < people_in_room;
 
-        insert into FunJokesTable
-        select pub, count(*) as fun_jokes, its
-        from JokeEvent#time_batch(2 sec)
-        where (laughing_people * 2) > people_in_room
-        group by pub;
+        create window FunJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+            (people_in_room int, laughing_people int, pub string, its string, ets string);
+
+        insert into FunJokesWin
+        select people_in_room, laughing_people, pub, its, ets
+        from JokeEvent
+        where (laughing_people * 2) > people_in_room;
 
         @name('answer')
-        select bad.pub as pub, bad.bad_jokes, fun.its as its_start, fun.fun_jokes
-        from BadJokesTable bad
-        left outer join FunJokesTable fun
+        select bad.pub, min(bad.its) as its_start
+        from BadJokesWin bad
+        full outer join FunJokesWin fun
         on fun.pub = bad.pub
-        where bad.bad_jokes > fun.fun_jokes;
+        group by bad.pub
+        having count(bad.pub) > count(fun.pub);
 
-        5. TODO: dlaczego zawsze tylko 1?
+        5.
         @name('answer')
-            select b.pub as pub, a[0].its as its_start
-            from pattern[
-                every a=JokeEvent(a.pub = "McLaren's Pub" and a.laughing_people <= 5)
-                    until b=JokeEvent(b.pub = "McLaren's Pub" and b.laughing_people > 5)
-            ];
+            select * from JokeEvent
+                match_recognize (
+                    partition by pub
+                    measures
+                        B.pub as pub,
+                        A[0].its as its_start
+                    pattern (A{2, } B)
+                    define
+                        A as A.laughing_people <= 5 and A.pub = "McLaren's Pub",
+                        B as B.laughing_people > 5 and B.pub = "McLaren's Pub"
+                )
 
-        6. TODO: nie mniej niż 30 osób???
+        6.
         @name('answer')
-            select a.laughing_people as laughing_people1, b.laughing_people as laughing_people2, d.laughing_people as laughing_people3
+            select a.laughing_people as laughing_people1, b.people_in_room, b.laughing_people as laughing_people2, d.laughing_people as laughing_people3
             from pattern[
                 every (a=JokeEvent(a.laughing_people > 4) -> (
-                        b=JokeEvent(b.laughing_people > 4) and not c=JokeEvent(c.people_in_room > 30)) -> (
-                        d=JokeEvent(d.laughing_people > 4) and not e=JokeEvent(e.people_in_room > 30))
+                        b=JokeEvent(b.laughing_people > 4 and b.people_in_room < 30) and not c=JokeEvent(c.people_in_room >= 30)) -> (
+                        d=JokeEvent(d.laughing_people > 4) and not e=JokeEvent(e.people_in_room >= 30))
                 )
             ];
 
@@ -154,12 +167,11 @@ public class EsperClient {
                     A.pub as pub,
                     A.laughing_people as ppl_before,
                     last(B.laughing_people) as ppl_after,
-                    count(B.pub) as ppl_count
+                    count(B.pub) as joke_count
                 pattern (A B{4, } C)
                 define
                     B as B.laughing_people < A.laughing_people and B.laughing_people < prev(B.laughing_people),
                     C as C.laughing_people > B.LastOf().laughing_people
-
             )
         */
 
