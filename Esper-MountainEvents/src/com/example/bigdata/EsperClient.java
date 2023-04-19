@@ -23,8 +23,8 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 15;
-            howLongInSec = 5;
+            noOfRecordsPerSec = 10;
+            howLongInSec = 10;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
             howLongInSec = Integer.parseInt(args[1]);
@@ -40,9 +40,23 @@ public class EsperClient {
         try {
             epCompiled = compiler.compile("""
             @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ets string, its string);
-            
-            @name('result')
-                select * from MountainEvent#length(1);
+                          
+            @name('answer')
+            select a.trip_leader as leader,
+            a.result as result_1, b.result as result_2, c.result as result_3
+            from pattern [
+                every (
+                    (
+                        a=MountainEvent(result not in ("summit-reached", "base-reached")) ->
+                        b=MountainEvent(b.trip_leader = a.trip_leader and result not in ("summit-reached", "base-reached")) ->
+                        c=MountainEvent(c.trip_leader = a.trip_leader and result not in ("summit-reached", "base-reached"))
+                    ) or (
+                        a=MountainEvent(result in ("summit-reached", "base-reached")) ->
+                        b=MountainEvent(b.trip_leader = a.trip_leader and result in ("summit-reached", "base-reached")) ->
+                        c=MountainEvent(c.trip_leader = a.trip_leader and result in ("summit-reached", "base-reached"))
+                    )
+                )
+            ]
             """, compilerArgs);
         }
 
@@ -62,7 +76,7 @@ public class EsperClient {
             throw new RuntimeException(ex);
         }
 
-        EPStatement resultStatement = runtime.getDeploymentService().getStatement(deployment.getDeploymentId(), "result");
+        EPStatement resultStatement = runtime.getDeploymentService().getStatement(deployment.getDeploymentId(), "answer");
 
         resultStatement.addListener( (newData, oldData, stmt, runTime) -> {
             for (EventBean eventBean : newData) {
@@ -113,6 +127,7 @@ public class EsperClient {
                 .set("its", timestampITS::toString)
                 .build()
                 .generate();
+        System.out.println("DATA: " + record);
         runtime.getEventService().sendEventJson(record, "MountainEvent");
     }
 
