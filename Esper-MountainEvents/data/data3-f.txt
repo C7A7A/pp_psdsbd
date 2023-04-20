@@ -1,0 +1,6 @@
+{"peak_name": "Yutmaru Sar", "trip_leader": "Fred Beckey", "result": "resignation-other", "amount_people": 6, "ets": "2023-04-20 18:40:30.0", "its": "2023-04-20 18:41:10.0"}
+{"peak_name": "Mukut Parbat", "trip_leader": "Edmund Hillary", "result": "resignation-weather", "amount_people": 7, "ets": "2023-04-20 18:41:00.0", "its": "2023-04-20 18:41:11.0"}
+{"peak_name": "Namcha Barwa", "trip_leader": "Sasha DiGiulian", "result": "resignation-other", "amount_people": 12, "ets": "2023-04-20 18:40:38.0", "its": "2023-04-20 18:41:12.0"}
+{"peak_name": "Putha Hiunchuli", "trip_leader": "Conrad Anker", "result": "resignation-weather", "amount_people": 9, "ets": "2023-04-20 18:40:43.0", "its": "2023-04-20 18:41:13.0"}
+{"peak_name": "Lhotse", "trip_leader": "Caroline Gleich", "result": "resignation-other", "amount_people": 9, "ets": "2023-04-20 18:41:02.0", "its": "2023-04-20 18:41:14.0"}
+{"peak_name": "Tirich Mir", "trip_leader": "Conrad Anker", "result": "base-reached", "amount_people": 1, "ets": "2023-04-20 18:40:51.0", "its": "2023-04-20 18:41:15.0"}

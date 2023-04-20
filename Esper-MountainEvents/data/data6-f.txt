@@ -1,0 +1,30 @@
+{"peak_name": "Porong Ri", "trip_leader": "Fred Beckey", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:38:39.0", "its": "2023-04-20 18:38:48.0"}
+{"peak_name": "Baintha Brakk", "trip_leader": "George Mallory", "result": "summit-reached", "amount_people": 4, "ets": "2023-04-20 18:38:11.0", "its": "2023-04-20 18:38:48.0"}
+{"peak_name": "Annapurna Dakshin", "trip_leader": "Steve House", "result": "resignation-weather", "amount_people": 4, "ets": "2023-04-20 18:38:11.0", "its": "2023-04-20 18:38:48.0"}
+{"peak_name": "Gimmigela", "trip_leader": "Catherine Destivelle", "result": "resignation-injury", "amount_people": 7, "ets": "2023-04-20 18:38:14.0", "its": "2023-04-20 18:38:48.0"}
+{"peak_name": "K12", "trip_leader": "Edmund Hillary", "result": "resignation-injury", "amount_people": 7, "ets": "2023-04-20 18:38:27.0", "its": "2023-04-20 18:38:48.0"}
+{"peak_name": "Mount Everest", "trip_leader": "Edmund Hillary", "result": "summit-reached", "amount_people": 4, "ets": "2023-04-20 18:38:38.0", "its": "2023-04-20 18:38:49.0"}
+{"peak_name": "K12", "trip_leader": "Caroline Gleich", "result": "resignation-other", "amount_people": 9, "ets": "2023-04-20 18:38:39.0", "its": "2023-04-20 18:38:49.0"}
+{"peak_name": "Tongshanjiabu", "trip_leader": "Edmund Hillary", "result": "resignation-other", "amount_people": 9, "ets": "2023-04-20 18:38:06.0", "its": "2023-04-20 18:38:49.0"}
+{"peak_name": "Ghent Kangri", "trip_leader": "Sasha DiGiulian", "result": "base-reached", "amount_people": 9, "ets": "2023-04-20 18:38:42.0", "its": "2023-04-20 18:38:49.0"}
+{"peak_name": "Shishapangma", "trip_leader": "Sasha DiGiulian", "result": "resignation-weather", "amount_people": 6, "ets": "2023-04-20 18:38:35.0", "its": "2023-04-20 18:38:49.0"}
+{"peak_name": "Khartaphu", "trip_leader": "Sasha DiGiulian", "result": "resignation-weather", "amount_people": 12, "ets": "2023-04-20 18:38:33.0", "its": "2023-04-20 18:38:50.0"}
+{"peak_name": "Labuche Kang III", "trip_leader": "Catherine Destivelle", "result": "resignation-weather", "amount_people": 8, "ets": "2023-04-20 18:38:35.0", "its": "2023-04-20 18:38:50.0"}
+{"peak_name": "The Crown", "trip_leader": "Edmund Hillary", "result": "resignation-someone-missing", "amount_people": 2, "ets": "2023-04-20 18:38:27.0", "its": "2023-04-20 18:38:50.0"}
+{"peak_name": "Kamet", "trip_leader": "Conrad Anker", "result": "base-reached", "amount_people": 3, "ets": "2023-04-20 18:38:36.0", "its": "2023-04-20 18:38:50.0"}
+{"peak_name": "Ismoil Somoni Peak", "trip_leader": "George Mallory", "result": "summit-reached", "amount_people": 10, "ets": "2023-04-20 18:38:45.0", "its": "2023-04-20 18:38:50.0"}
+{"peak_name": "Gangapurna", "trip_leader": "Steve House", "result": "base-reached", "amount_people": 2, "ets": "2023-04-20 18:38:20.0", "its": "2023-04-20 18:38:51.0"}
+{"peak_name": "Gasherbrum II", "trip_leader": "Conrad Anker", "result": "resignation-other", "amount_people": 1, "ets": "2023-04-20 18:38:40.0", "its": "2023-04-20 18:38:51.0"}
+{"peak_name": "Khartaphu", "trip_leader": "Catherine Destivelle", "result": "resignation-other", "amount_people": 9, "ets": "2023-04-20 18:38:38.0", "its": "2023-04-20 18:38:51.0"}
+{"peak_name": "Chogolisa", "trip_leader": "Edmund Hillary", "result": "resignation-weather", "amount_people": 1, "ets": "2023-04-20 18:38:36.0", "its": "2023-04-20 18:38:51.0"}
+{"peak_name": "Kula Kangri", "trip_leader": "Caroline Gleich", "result": "resignation-other", "amount_people": 2, "ets": "2023-04-20 18:38:44.0", "its": "2023-04-20 18:38:51.0"}
+{"peak_name": "Kangphu Kang", "trip_leader": "Catherine Destivelle", "result": "resignation-weather", "amount_people": 6, "ets": "2023-04-20 18:38:26.0", "its": "2023-04-20 18:38:52.0"}
+{"peak_name": "Labuche Kang III", "trip_leader": "Junko Tabei", "result": "summit-reached", "amount_people": 8, "ets": "2023-04-20 18:38:45.0", "its": "2023-04-20 18:38:52.0"}
+{"peak_name": "Saser Kangri III", "trip_leader": "Junko Tabei", "result": "resignation-injury", "amount_people": 3, "ets": "2023-04-20 18:38:38.0", "its": "2023-04-20 18:38:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Edmund Hillary", "result": "resignation-other", "amount_people": 9, "ets": "2023-04-20 18:38:39.0", "its": "2023-04-20 18:38:52.0"}
+{"peak_name": "Nuptse", "trip_leader": "Edmund Hillary", "result": "resignation-injury", "amount_people": 9, "ets": "2023-04-20 18:38:49.0", "its": "2023-04-20 18:38:52.0"}
+{"peak_name": "Nangpai Gosum", "trip_leader": "Steve House", "result": "resignation-other", "amount_people": 12, "ets": "2023-04-20 18:38:10.0", "its": "2023-04-20 18:38:53.0"}
+{"peak_name": "Mukut Parbat", "trip_leader": "George Mallory", "result": "summit-reached", "amount_people": 1, "ets": "2023-04-20 18:38:10.0", "its": "2023-04-20 18:38:53.0"}
+{"peak_name": "Gasherbrum II", "trip_leader": "George Mallory", "result": "summit-reached", "amount_people": 2, "ets": "2023-04-20 18:38:17.0", "its": "2023-04-20 18:38:53.0"}
+{"peak_name": "Kumbhakarna", "trip_leader": "Caroline Gleich", "result": "resignation-other", "amount_people": 8, "ets": "2023-04-20 18:38:30.0", "its": "2023-04-20 18:38:53.0"}
+{"peak_name": "Noshaq", "trip_leader": "Fred Beckey", "result": "resignation-injury", "amount_people": 12, "ets": "2023-04-20 18:38:15.0", "its": "2023-04-20 18:38:53.0"}

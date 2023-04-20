@@ -1,0 +1,80 @@
+{"peak_name": "Sherpi Kangri", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 1, "ets": "2023-04-20 18:26:50.0", "its": "2023-04-20 18:27:11.0"}
+{"peak_name": "Mount Everest", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 5, "ets": "2023-04-20 18:26:36.0", "its": "2023-04-20 18:27:11.0"}
+{"peak_name": "Gyachung Kang", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 1, "ets": "2023-04-20 18:26:42.0", "its": "2023-04-20 18:27:11.0"}
+{"peak_name": "Broad Peak", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 11, "ets": "2023-04-20 18:26:58.0", "its": "2023-04-20 18:27:11.0"}
+{"peak_name": "Teram Kangri I", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 6, "ets": "2023-04-20 18:26:29.0", "its": "2023-04-20 18:27:11.0"}
+{"peak_name": "Ghent Kangri", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 12, "ets": "2023-04-20 18:26:37.0", "its": "2023-04-20 18:27:12.0"}
+{"peak_name": "Baltistan Peak", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 9, "ets": "2023-04-20 18:27:01.0", "its": "2023-04-20 18:27:12.0"}
+{"peak_name": "Kanjut Sar", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 11, "ets": "2023-04-20 18:26:52.0", "its": "2023-04-20 18:27:12.0"}
+{"peak_name": "Crestone Peak", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 2, "ets": "2023-04-20 18:27:06.0", "its": "2023-04-20 18:27:12.0"}
+{"peak_name": "Gyachung Kang", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 11, "ets": "2023-04-20 18:26:57.0", "its": "2023-04-20 18:27:12.0"}
+{"peak_name": "Gyala Peri", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 7, "ets": "2023-04-20 18:26:45.0", "its": "2023-04-20 18:27:13.0"}
+{"peak_name": "Siguang Ri", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 4, "ets": "2023-04-20 18:26:54.0", "its": "2023-04-20 18:27:13.0"}
+{"peak_name": "Saraghrar", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 6, "ets": "2023-04-20 18:27:03.0", "its": "2023-04-20 18:27:13.0"}
+{"peak_name": "K12", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 8, "ets": "2023-04-20 18:26:46.0", "its": "2023-04-20 18:27:13.0"}
+{"peak_name": "Rimo III", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 3, "ets": "2023-04-20 18:27:09.0", "its": "2023-04-20 18:27:13.0"}
+{"peak_name": "Mamostong Kangri", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 1, "ets": "2023-04-20 18:26:47.0", "its": "2023-04-20 18:27:14.0"}
+{"peak_name": "Baintha Brakk", "trip_leader": "Batura Sar", "result": "resignation-weather", "amount_people": 2, "ets": "2023-04-20 18:27:08.0", "its": "2023-04-20 18:27:14.0"}
+{"peak_name": "Noshaq", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 2, "ets": "2023-04-20 18:26:41.0", "its": "2023-04-20 18:27:14.0"}
+{"peak_name": "Trivor", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 11, "ets": "2023-04-20 18:26:50.0", "its": "2023-04-20 18:27:14.0"}
+{"peak_name": "Changtse", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 1, "ets": "2023-04-20 18:27:09.0", "its": "2023-04-20 18:27:14.0"}
+{"peak_name": "Nanda Devi", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 9, "ets": "2023-04-20 18:27:12.0", "its": "2023-04-20 18:27:15.0"}
+{"peak_name": "Momhil Sar", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 4, "ets": "2023-04-20 18:26:45.0", "its": "2023-04-20 18:27:15.0"}
+{"peak_name": "Chogolisa", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 2, "ets": "2023-04-20 18:26:40.0", "its": "2023-04-20 18:27:15.0"}
+{"peak_name": "Annapurna Dakshin", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 8, "ets": "2023-04-20 18:26:50.0", "its": "2023-04-20 18:27:15.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 4, "ets": "2023-04-20 18:27:03.0", "its": "2023-04-20 18:27:15.0"}
+{"peak_name": "Ganesh I", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 10, "ets": "2023-04-20 18:26:44.0", "its": "2023-04-20 18:27:16.0"}
+{"peak_name": "Siguang Ri", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 9, "ets": "2023-04-20 18:26:58.0", "its": "2023-04-20 18:27:16.0"}
+{"peak_name": "Labuche Kang III", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 7, "ets": "2023-04-20 18:26:56.0", "its": "2023-04-20 18:27:16.0"}
+{"peak_name": "Gasherbrum IV", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:27:05.0", "its": "2023-04-20 18:27:16.0"}
+{"peak_name": "Gasherbrum III", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 11, "ets": "2023-04-20 18:27:03.0", "its": "2023-04-20 18:27:16.0"}
+{"peak_name": "Annapurna II", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 6, "ets": "2023-04-20 18:26:49.0", "its": "2023-04-20 18:27:17.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 11, "ets": "2023-04-20 18:27:07.0", "its": "2023-04-20 18:27:17.0"}
+{"peak_name": "Chomo Lonzo", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 11, "ets": "2023-04-20 18:27:10.0", "its": "2023-04-20 18:27:17.0"}
+{"peak_name": "Gyala Peri", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 4, "ets": "2023-04-20 18:26:37.0", "its": "2023-04-20 18:27:17.0"}
+{"peak_name": "Chogolisa", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 4, "ets": "2023-04-20 18:26:44.0", "its": "2023-04-20 18:27:17.0"}
+{"peak_name": "Gasherbrum I", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 12, "ets": "2023-04-20 18:27:13.0", "its": "2023-04-20 18:27:18.0"}
+{"peak_name": "Shispare", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 10, "ets": "2023-04-20 18:26:39.0", "its": "2023-04-20 18:27:18.0"}
+{"peak_name": "Mount Whitney", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 4, "ets": "2023-04-20 18:27:01.0", "its": "2023-04-20 18:27:18.0"}
+{"peak_name": "Baintha Brakk", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 4, "ets": "2023-04-20 18:26:39.0", "its": "2023-04-20 18:27:18.0"}
+{"peak_name": "Teram Kangri III", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 1, "ets": "2023-04-20 18:27:01.0", "its": "2023-04-20 18:27:18.0"}
+{"peak_name": "Kangpenqing", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 8, "ets": "2023-04-20 18:27:05.0", "its": "2023-04-20 18:27:19.0"}
+{"peak_name": "Istor-o-Nal", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:26:42.0", "its": "2023-04-20 18:27:19.0"}
+{"peak_name": "Chongtar", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 6, "ets": "2023-04-20 18:26:52.0", "its": "2023-04-20 18:27:19.0"}
+{"peak_name": "Porong Ri", "trip_leader": "Batura Sar", "result": "resignation-weather", "amount_people": 2, "ets": "2023-04-20 18:26:56.0", "its": "2023-04-20 18:27:19.0"}
+{"peak_name": "Sia Kangri", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 5, "ets": "2023-04-20 18:26:58.0", "its": "2023-04-20 18:27:19.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 2, "ets": "2023-04-20 18:27:09.0", "its": "2023-04-20 18:27:20.0"}
+{"peak_name": "Gasherbrum III", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 10, "ets": "2023-04-20 18:27:01.0", "its": "2023-04-20 18:27:20.0"}
+{"peak_name": "Putha Hiunchuli", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 7, "ets": "2023-04-20 18:26:52.0", "its": "2023-04-20 18:27:20.0"}
+{"peak_name": "Kangpenqing", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 2, "ets": "2023-04-20 18:26:47.0", "its": "2023-04-20 18:27:20.0"}
+{"peak_name": "Chogolisa", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 4, "ets": "2023-04-20 18:26:46.0", "its": "2023-04-20 18:27:20.0"}
+{"peak_name": "Sunanda Devi", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 2, "ets": "2023-04-20 18:27:11.0", "its": "2023-04-20 18:27:21.0"}
+{"peak_name": "Pumari Chhish", "trip_leader": "Batura Sar", "result": "resignation-weather", "amount_people": 8, "ets": "2023-04-20 18:27:16.0", "its": "2023-04-20 18:27:21.0"}
+{"peak_name": "Passu Sar", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:26:45.0", "its": "2023-04-20 18:27:21.0"}
+{"peak_name": "Noijin Kangsang", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 5, "ets": "2023-04-20 18:26:45.0", "its": "2023-04-20 18:27:21.0"}
+{"peak_name": "Jongsong Peak", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 4, "ets": "2023-04-20 18:27:09.0", "its": "2023-04-20 18:27:21.0"}
+{"peak_name": "Dhaulagiri V", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 8, "ets": "2023-04-20 18:27:19.0", "its": "2023-04-20 18:27:22.0"}
+{"peak_name": "Gongga Shan", "trip_leader": "Batura Sar", "result": "resignation-weather", "amount_people": 4, "ets": "2023-04-20 18:27:07.0", "its": "2023-04-20 18:27:22.0"}
+{"peak_name": "Annapurna I", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 9, "ets": "2023-04-20 18:26:39.0", "its": "2023-04-20 18:27:22.0"}
+{"peak_name": "Kongur Tagh", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 18:26:42.0", "its": "2023-04-20 18:27:22.0"}
+{"peak_name": "Ghent Kangri", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 2, "ets": "2023-04-20 18:27:05.0", "its": "2023-04-20 18:27:22.0"}
+{"peak_name": "Gangapurna", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 7, "ets": "2023-04-20 18:27:08.0", "its": "2023-04-20 18:27:23.0"}
+{"peak_name": "Cho Oyu", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 5, "ets": "2023-04-20 18:26:45.0", "its": "2023-04-20 18:27:23.0"}
+{"peak_name": "Gasherbrum III", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 9, "ets": "2023-04-20 18:26:55.0", "its": "2023-04-20 18:27:23.0"}
+{"peak_name": "Diran", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:26:58.0", "its": "2023-04-20 18:27:23.0"}
+{"peak_name": "Langtang Lirung", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 5, "ets": "2023-04-20 18:27:17.0", "its": "2023-04-20 18:27:23.0"}
+{"peak_name": "Jomolhari", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 2, "ets": "2023-04-20 18:27:04.0", "its": "2023-04-20 18:27:24.0"}
+{"peak_name": "Sia Kangri", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 6, "ets": "2023-04-20 18:27:02.0", "its": "2023-04-20 18:27:24.0"}
+{"peak_name": "Saser Kangri III", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 11, "ets": "2023-04-20 18:26:50.0", "its": "2023-04-20 18:27:24.0"}
+{"peak_name": "Kamet", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 8, "ets": "2023-04-20 18:27:03.0", "its": "2023-04-20 18:27:24.0"}
+{"peak_name": "Jomolhari", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 18:27:12.0", "its": "2023-04-20 18:27:24.0"}
+{"peak_name": "Distaghil Sar", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:27:01.0", "its": "2023-04-20 18:27:25.0"}
+{"peak_name": "Istor-o-Nal", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 1, "ets": "2023-04-20 18:27:19.0", "its": "2023-04-20 18:27:25.0"}
+{"peak_name": "Jongsong Peak", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 2, "ets": "2023-04-20 18:27:12.0", "its": "2023-04-20 18:27:25.0"}
+{"peak_name": "Jengish Chokusu", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 3, "ets": "2023-04-20 18:27:14.0", "its": "2023-04-20 18:27:25.0"}
+{"peak_name": "Saser Kangri I", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 9, "ets": "2023-04-20 18:26:50.0", "its": "2023-04-20 18:27:25.0"}
+{"peak_name": "Trivor", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 11, "ets": "2023-04-20 18:27:16.0", "its": "2023-04-20 18:27:26.0"}
+{"peak_name": "Annapurna I", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 11, "ets": "2023-04-20 18:27:02.0", "its": "2023-04-20 18:27:26.0"}
+{"peak_name": "Shispare", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 9, "ets": "2023-04-20 18:26:55.0", "its": "2023-04-20 18:27:26.0"}
+{"peak_name": "Mount Everest", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 3, "ets": "2023-04-20 18:27:04.0", "its": "2023-04-20 18:27:26.0"}
+{"peak_name": "Mamostong Kangri", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 18:27:02.0", "its": "2023-04-20 18:27:26.0"}

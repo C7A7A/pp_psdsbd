@@ -10,6 +10,10 @@ import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
 import net.datafaker.Faker;
 import net.datafaker.fileformats.Format;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -19,12 +23,17 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class EsperClient {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+
+//        File file = new File("data/data7.txt");
+//        PrintStream stream = new PrintStream(file);
+//        System.setOut(stream);
+
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
             noOfRecordsPerSec = 10;
-            howLongInSec = 10;
+            howLongInSec = 18;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
             howLongInSec = Integer.parseInt(args[1]);
@@ -39,25 +48,52 @@ public class EsperClient {
 
         try {
             epCompiled = compiler.compile("""
-            @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ets string, its string);
-                          
-            @name('answer')
-            select a.trip_leader as leader,
-            a.result as result_1, b.result as result_2, c.result as result_3
-            from pattern [
-                every (
-                    (
-                        a=MountainEvent(result not in ("summit-reached", "base-reached")) ->
-                        b=MountainEvent(b.trip_leader = a.trip_leader and result not in ("summit-reached", "base-reached")) ->
-                        c=MountainEvent(c.trip_leader = a.trip_leader and result not in ("summit-reached", "base-reached"))
-                    ) or (
-                        a=MountainEvent(result in ("summit-reached", "base-reached")) ->
-                        b=MountainEvent(b.trip_leader = a.trip_leader and result in ("summit-reached", "base-reached")) ->
-                        c=MountainEvent(c.trip_leader = a.trip_leader and result in ("summit-reached", "base-reached"))
-                    )
-                )
-            ]
-            """, compilerArgs);
+                 @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ets string, its string);
+    
+                 create table topMountainsLong(peak_name string primary key, how_many long);
+                 create table topMountainsShort(peak_name string primary key, how_many long);
+
+                 create window tempMountainLongEv#time_batch(4 sec) as MountainEvent;
+                 create window tempMountainShortEv#time_batch(2 sec) as MountainEvent;
+                 create window tempMountainDiffEv#keepall as MountainEvent;
+
+                 insert into tempMountainLongEv
+                 select *
+                 from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 4 sec);
+
+                 insert into tempMountainShortEv
+                 select *
+                 from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 2 sec);
+
+                 insert into tempMountainDiffEv
+                 select distinct long.*
+                 from tempMountainLongEv as long
+                 left outer join tempMountainShortEv as short on long.its = short.its
+                 where short.its is null;
+
+                 insert into topMountainsLong
+                 select peak_name, count(peak_name) as how_many
+                 from tempMountainDiffEv
+                 group by peak_name
+                 order by count(peak_name) desc
+                 limit 10;
+
+                 insert into topMountainsShort
+                 select peak_name, count(peak_name) as how_many
+                 from tempMountainShortEv
+                 group by peak_name
+                 order by count(peak_name) desc
+                 limit 10;
+
+                 @name('answer')
+                    select distinct long.peak_name, long.how_many
+                    from MountainEvent#time_batch(2 sec) as ev
+                    right outer join topMountainsLong as long on long.peak_name = ev.peak_name
+                    left outer join topMountainsShort as short
+                    on long.peak_name = short.peak_name
+                    where short.peak_name is null
+                    order by long.how_many desc
+                    """, compilerArgs);
         }
 
         catch (EPCompileException ex) {
@@ -84,6 +120,7 @@ public class EsperClient {
             }
         });
 
+        Random generator = new Random(2137);
         Faker faker = new Faker();
         String record;
 
@@ -127,7 +164,8 @@ public class EsperClient {
                 .set("its", timestampITS::toString)
                 .build()
                 .generate();
-        System.out.println("DATA: " + record);
+
+        System.out.println(record);
         runtime.getEventService().sendEventJson(record, "MountainEvent");
     }
 

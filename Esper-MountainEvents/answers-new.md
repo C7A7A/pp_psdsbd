@@ -7,8 +7,8 @@ Wyniki powinny zawierać, następujące kolumny:
 - `sum_people` - suma liczby osób
 
 ## Odpowiedź
-select result, sum(amount_people) as sum_people 
-from MountainEvent(result IN ('summit-reached', 'base-reached'))#time(10) 
+select result, sum(amount_people) as sum_people
+from MountainEvent#ext_timed(java.sql.Timestamp.valueOf(its).getTime(), 10 sec)
 group by result;
 
 ## Zadanie 2
@@ -82,6 +82,27 @@ Wyniki powinny zawierać, następujące kolumny:
 - `result_3` - rezultat trzeciej wyprawy
 
 ## Odpowiedź
+select a.trip_leader as leader,
+a.result as result_1, b.result as result_2, c.result as result_3
+    from pattern [
+        every (
+            (
+                a=MountainEvent(result not in ("summit-reached", "base-reached")) -> (
+                    b=MountainEvent(b.trip_leader = a.trip_leader and result not in ("summit-reached", "base-reached")) and not
+                    x=MountainEvent(x.trip_leader != a.trip_leader or x.result in ("summit-reached", "base-reached"))
+                ) -> (
+                    c=MountainEvent(c.trip_leader = a.trip_leader and result not in ("summit-reached", "base-reached")) and not
+                    y=MountainEvent(y.trip_leader != a.trip_leader or y.result in ("summit-reached", "base-reached"))
+                )) or (
+                a=MountainEvent(result in ("summit-reached", "base-reached")) -> (
+                    b=MountainEvent(b.trip_leader = a.trip_leader and result in ("summit-reached", "base-reached")) and not
+                    x=MountainEvent(x.trip_leader != a.trip_leader or x.result not in ("summit-reached", "base-reached"))
+                ) -> (
+                    c=MountainEvent(c.trip_leader = a.trip_leader and result in ("summit-reached", "base-reached")) and not
+                    y=MountainEvent(y.trip_leader != a.trip_leader or y.result not in ("summit-reached", "base-reached"))
+                ))
+            )
+    ]
 
 ## Zadanie 7
 Dla każdego lidera wykrywaj takie wyprawy, że:

@@ -1,0 +1,1 @@
+@name('answer') select * from ScoreEvent;

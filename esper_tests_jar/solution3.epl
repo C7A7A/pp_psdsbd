@@ -1,0 +1,4 @@
+@name('answer')
+select peak_name, trip_leader, result, amount_people, max(amount_people) as max_people, its
+from MountainEvent(result = "resignation-someone-missing")#length(20)
+having max(amount_people) = amount_people;

@@ -1,0 +1,4 @@
+@name('answer')
+select result, sum(amount_people) as sum_people
+from MountainEvent#ext_timed(java.sql.Timestamp.valueOf(its).getTime(), 10 sec)
+group by result;

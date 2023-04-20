@@ -1,0 +1,14 @@
+@name('answer')
+select * from MountainEvent
+    match_recognize (
+    partition by trip_leader
+    measures
+        A.its as its_a, A.trip_leader as trip_leader, A.result as result_a, A.amount_people as amount_people_a,
+        B[0].result as result_b_first, B[0].amount_people as amount_people_b_first,
+        C.result as result_c, C.amount_people as amount_people_c
+    pattern (A B{3,5} C)
+    define
+        A as A.result not in ("summit-reached", "base-reached"),
+        B as B.amount_people < A.amount_people and B.result in ("summit-reached", "base-reached"),
+        C as C.amount_people >= A.amount_people and C.result not in ("summit-reached", "base-reached")
+    )

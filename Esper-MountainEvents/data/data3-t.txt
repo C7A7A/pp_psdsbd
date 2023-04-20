@@ -1,0 +1,51 @@
+{"peak_name": "Jomolhari", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 7, "ets": "2023-04-20 17:19:29.0", "its": "2023-04-20 17:19:50.0"}
+{"peak_name": "Yukshin Gardan Sar", "trip_leader": "Teram Kangri I", "result": "base-reached", "amount_people": 1, "ets": "2023-04-20 17:19:41.0", "its": "2023-04-20 17:19:50.0"}
+{"peak_name": "Shispare", "trip_leader": "Batura Sar", "result": "summit-reached", "amount_people": 11, "ets": "2023-04-20 17:19:43.0", "its": "2023-04-20 17:19:50.0"}
+{"peak_name": "Ghent Kangri", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 5, "ets": "2023-04-20 17:19:37.0", "its": "2023-04-20 17:19:50.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Manaslu", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 1, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Dhaulagiri V", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 2, "ets": "2023-04-20 17:19:11.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Labuche Kang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:28.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Baintha Brakk", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 6, "ets": "2023-04-20 17:19:11.0", "its": "2023-04-20 17:19:51.0"}
+{"peak_name": "Trivor", "trip_leader": "Batura Sar", "result": "base-reached", "amount_people": 12, "ets": "2023-04-20 17:19:46.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 2, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 2, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 2, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 3, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 3, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 3, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 3, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 3, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Rimo I", "trip_leader": "Teram Kangri I", "result": "summit-reached", "amount_people": 1, "ets": "2023-04-20 17:19:34.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Changtse", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 10, "ets": "2023-04-20 17:19:48.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Gasherbrum IV", "trip_leader": "Batura Sar", "result": "resignation-other", "amount_people": 8, "ets": "2023-04-20 17:19:22.0", "its": "2023-04-20 17:19:53.0"}
+{"peak_name": "Langtang Ri", "trip_leader": "Teram Kangri I", "result": "resignation-weather", "amount_people": 4, "ets": "2023-04-20 17:19:43.0", "its": "2023-04-20 17:19:53.0"}
+{"peak_name": "Jengish Chokusu", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 6, "ets": "2023-04-20 17:19:31.0", "its": "2023-04-20 17:19:53.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 5, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 5, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 5, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 5, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 5, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Mana Peak", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 2, "ets": "2023-04-20 17:19:32.0", "its": "2023-04-20 17:19:52.0"}
+{"peak_name": "Dhaulagiri V", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 8, "ets": "2023-04-20 17:19:43.0", "its": "2023-04-20 17:19:53.0"}
+{"peak_name": "Mount Everest", "trip_leader": "Batura Sar", "result": "resignation-weather", "amount_people": 10, "ets": "2023-04-20 17:19:11.0", "its": "2023-04-20 17:19:54.0"}
+{"peak_name": "Noijin Kangsang", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 11, "ets": "2023-04-20 17:19:19.0", "its": "2023-04-20 17:19:54.0"}
+{"peak_name": "Mamostong Kangri", "trip_leader": "Teram Kangri I", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:46.0", "its": "2023-04-20 17:19:54.0"}
+{"peak_name": "Khartaphu", "trip_leader": "Teram Kangri I", "result": "resignation-other", "amount_people": 11, "ets": "2023-04-20 17:19:24.0", "its": "2023-04-20 17:19:54.0"}
+{"peak_name": "Chamlang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:16.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Dhaulagiri IV", "trip_leader": "Teram Kangri I", "result": "resignation-injury", "amount_people": 11, "ets": "2023-04-20 17:19:33.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Mamostong Kangri", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 11, "ets": "2023-04-20 17:19:25.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Noijin Kangsang", "trip_leader": "Batura Sar", "result": "resignation-injury", "amount_people": 2, "ets": "2023-04-20 17:19:27.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Chamlang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:16.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Chamlang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:16.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Chamlang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:16.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Chamlang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:16.0", "its": "2023-04-20 17:19:55.0"}
+{"peak_name": "Chamlang", "trip_leader": "Batura Sar", "result": "resignation-someone-missing", "amount_people": 12, "ets": "2023-04-20 17:19:16.0", "its": "2023-04-20 17:19:55.0"}

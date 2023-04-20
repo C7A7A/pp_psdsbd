@@ -1,0 +1,1 @@
+@name('solution') select house, character, score, ets, its from ScoreEvent;

@@ -1,0 +1,9 @@
+@name('answer')
+select a[0].its as its_1, a[1].its as its_2, a[2].its as its_3,
+a[0].result as result_1, a[1].result as result_2, a[2].result as result_3
+from pattern [
+    every ([3:] a=MountainEvent(result in ("summit-reached", "base-reached"))
+        until b=MountainEvent(result in ("resignation-injury", "resignation-weather", "resignation-someone-missing", "resignation-other"))
+        where timer:within(5 sec)
+    )
+]

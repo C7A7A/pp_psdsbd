@@ -23,7 +23,7 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 10;
+            noOfRecordsPerSec = 100;
             howLongInSec = 10;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
@@ -51,30 +51,20 @@ public class EsperClient {
                     @public @buseventtype create json schema JokeEvent(
                         character string, quote string, people_in_room int, laughing_people int, pub string, ets string, its string
                     );
-                    create window BadJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
-                                                (people_in_room int, laughing_people int, pub string, its string, ets string);
-                                        
-                    insert into BadJokesWin
-                    select people_in_room, laughing_people, pub, its, ets
-                    from JokeEvent
-                    where (laughing_people * 2) < people_in_room;
-                                
-                    create window FunJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
-                        (people_in_room int, laughing_people int, pub string, its string, ets string);
-                                
-                    insert into FunJokesWin
-                    select people_in_room, laughing_people, pub, its, ets
-                    from JokeEvent
-                    where (laughing_people * 2) > people_in_room;
-                                
                     @name('answer')
-                    select bad.pub, min(bad.its) as its_start
-                    from BadJokesWin bad
-                    full outer join FunJokesWin fun
-                    on fun.pub = bad.pub
-                    group by bad.pub
-                    having count(bad.pub) > count(fun.pub);
-                                        
+                    select * from JokeEvent
+                    match_recognize (
+                        partition by pub
+                        measures
+                            A.pub as pub,
+                            A.laughing_people as ppl_before,
+                            last(B.laughing_people) as ppl_after,
+                            count(B.pub) as joke_count
+                        pattern (A B{4,} C)
+                        define
+                            B as B.laughing_people < A.laughing_people and B.laughing_people < prev(B.laughing_people),
+                            C as C.laughing_people > B.LastOf().laughing_people
+                    )
                     """;
             epCompiled = compiler.compile(epl_1, compilerArgs);
 
@@ -142,7 +132,7 @@ public class EsperClient {
                     measures
                         B.pub as pub,
                         A[0].its as its_start
-                    pattern (A{2, } B)
+                    pattern (A{2,} B)
                     define
                         A as A.laughing_people <= 5 and A.pub = "McLaren's Pub",
                         B as B.laughing_people > 5 and B.pub = "McLaren's Pub"
@@ -222,6 +212,7 @@ public class EsperClient {
                         .set("its", () -> iTimestamp.toString())
                         .build().generate();
                 runtime.getEventService().sendEventJson(record, "JokeEvent");
+//                System.out.println("DATA: " + record);
             }
             waitToEpoch();
         }
