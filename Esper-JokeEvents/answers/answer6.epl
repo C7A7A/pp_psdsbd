@@ -1,0 +1,8 @@
+@name('answer')
+    select a.laughing_people as laughing_people1, b.people_in_room, b.laughing_people as laughing_people2, d.laughing_people as laughing_people3
+    from pattern[
+        every (a=JokeEvent(a.laughing_people > 4) -> (
+                b=JokeEvent(b.laughing_people > 4 and b.people_in_room < 30) and not c=JokeEvent(c.people_in_room >= 30)) -> (
+                d=JokeEvent(d.laughing_people > 4) and not e=JokeEvent(e.people_in_room >= 30))
+        )
+    ];

@@ -1,0 +1,4 @@
+@name('answer')
+    select character, avg(laughing_people) as avglaughing_people
+    from JokeEvent
+    group by character;

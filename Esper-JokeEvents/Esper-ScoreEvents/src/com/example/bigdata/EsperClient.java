@@ -158,7 +158,7 @@ public class EsperClient {
                     A.laughing_people as ppl_before,
                     last(B.laughing_people) as ppl_after,
                     count(B.pub) as joke_count
-                pattern (A B{4, } C)
+                pattern (A B{4,} C)
                 define
                     B as B.laughing_people < A.laughing_people and B.laughing_people < prev(B.laughing_people),
                     C as C.laughing_people > B.LastOf().laughing_people

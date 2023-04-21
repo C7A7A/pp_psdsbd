@@ -1,0 +1,4 @@
+@name('answer')
+    select character, its
+    from JokeEvent
+    where laughing_people = 0;

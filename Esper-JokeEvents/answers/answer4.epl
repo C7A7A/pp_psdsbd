@@ -1,0 +1,23 @@
+create window BadJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+    (people_in_room int, laughing_people int, pub string, its string, ets string);
+
+insert into BadJokesWin
+select people_in_room, laughing_people, pub, its, ets
+from JokeEvent
+where (laughing_people * 2) < people_in_room;
+
+create window FunJokesWin#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+    (people_in_room int, laughing_people int, pub string, its string, ets string);
+
+insert into FunJokesWin
+select people_in_room, laughing_people, pub, its, ets
+from JokeEvent
+where (laughing_people * 2) > people_in_room;
+
+@name('answer')
+select bad.pub, min(bad.its) as its_start
+from BadJokesWin bad
+full outer join FunJokesWin fun
+on fun.pub = bad.pub
+group by bad.pub
+having count(bad.pub) > count(fun.pub);

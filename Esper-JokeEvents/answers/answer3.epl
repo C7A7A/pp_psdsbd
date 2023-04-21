@@ -1,0 +1,4 @@
+@name('answer')
+    select character, laughing_people, its
+    from JokeEvent#ext_timed(java.sql.Timestamp.valueOf(its).getTime(), 2 min)
+    having laughing_people = max(laughing_people);

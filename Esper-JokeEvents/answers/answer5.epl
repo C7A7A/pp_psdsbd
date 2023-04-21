@@ -1,0 +1,12 @@
+@name('answer')
+    select * from JokeEvent
+      match_recognize (
+          partition by pub
+          measures
+              B.pub as pub,
+              A[0].its as its_start
+          pattern (A{2,} B)
+          define
+              A as A.laughing_people <= 5 and A.pub = "McLaren's Pub",
+              B as B.laughing_people > 5 and B.pub = "McLaren's Pub"
+      )
