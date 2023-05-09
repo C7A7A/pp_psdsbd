@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 public class KafkaFakerProducer {
     public static void main(String[] args) throws InterruptedException {
         if (args.length < 5) {
-            System.out.println("Należy podać pięć parametrów: " +
-                    "bootstrapServers topicName format noOfRecordsPerSec howLongInSec");
+            System.out.println("Należy podać siedem parametrów: " +
+                    "bootstrapServers topicName format noOfRecordsPerSec howLongInSec ");
             System.exit(0);
         }
 

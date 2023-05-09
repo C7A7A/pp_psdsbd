@@ -49,6 +49,28 @@ Wyniki powinny zawierać, następujące kolumny:
 - `how_many` - liczba wypraw jaka miała na celu szczyt przed jego usunięcem z listy
 
 ## Odpowiedź
+create window topTenPeaks#length(10)#unique(peak_name)
+as (peak_name string, how_many long);
+
+insert into topTenPeaks(peak_name, how_many)
+select peak_name, count(peak_name)
+from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 2 sec)
+group by peak_name
+order by count(peak_name) desc
+limit 10;
+
+create window lasTopTenPeaks#unique(peak_name)
+as (peak_name string, present long, how_many long);
+
+insert rstream into lasTopTenPeaks(peak_name, present, how_many)
+select peak_name, count(peak_name), how_many
+from topTenPeaks
+group by peak_name;
+
+@name('answer')
+select peak_name, how_many
+from lasTopTenPeaks
+where present = 0;
 
 ## Zadanie 5
 Wykrywaj serię nie dłuższą niż 5 sekund i składającą się z co najmniej 3 kolejnych wypraw zakończonych sukcesem (summit reached, base reached), po której to serii miała miejsce wyprawa o efekcie innym niż sukces.

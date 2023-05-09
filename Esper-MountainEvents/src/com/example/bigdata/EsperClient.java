@@ -11,9 +11,7 @@ import com.espertech.esper.runtime.client.*;
 import net.datafaker.Faker;
 import net.datafaker.fileformats.Format;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -32,8 +30,8 @@ public class EsperClient {
         int noOfRecordsPerSec;
         int howLongInSec;
         if (args.length < 2) {
-            noOfRecordsPerSec = 10;
-            howLongInSec = 10;
+            noOfRecordsPerSec = 30;
+            howLongInSec = 6;
         } else {
             noOfRecordsPerSec = Integer.parseInt(args[0]);
             howLongInSec = Integer.parseInt(args[1]);
@@ -48,31 +46,31 @@ public class EsperClient {
 
         try {
             epCompiled = compiler.compile("""
-                 @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ets string, its string);
-                    
-                 create window topTenPeaks#length(10)#unique(peak_name)
-                 as (peak_name string, how_many long);
-
-                 insert into topTenPeaks(peak_name, how_many)
-                 select peak_name, count(peak_name)
-                 from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 2 sec)
-                 group by peak_name
-                 order by count(peak_name) desc
-                 limit 10;
-
-                 create window lasTopTenPeaks#unique(peak_name)
-                 as (peak_name string, present long, how_many long);
-
-                 insert rstream into lasTopTenPeaks(peak_name, present, how_many)
-                 select peak_name, count(peak_name), how_many
-                 from topTenPeaks
-                 group by peak_name;
-
-                 @name('answer')
-                 select peak_name, how_many
-                 from lasTopTenPeaks
-                 where present = 0;
-            """, compilerArgs);
+                     @public @buseventtype create json schema MountainEvent(peak_name string, trip_leader string, result string, amount_people int, ets string, its string);
+                        
+                     create window topTenPeaks#length(10)#unique(peak_name)
+                     as (peak_name string, how_many long);
+                     
+                     insert into topTenPeaks(peak_name, how_many)
+                     select peak_name, count(peak_name)
+                     from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 2 sec)
+                     group by peak_name
+                     order by count(peak_name) desc
+                     limit 10;
+                     
+                     create window lasTopTenPeaks#unique(peak_name)
+                     as (peak_name string, present long, how_many long);
+                     
+                     insert rstream into lasTopTenPeaks(peak_name, present, how_many)
+                     select peak_name, count(peak_name), how_many
+                     from topTenPeaks
+                     group by peak_name;
+                     
+                     @name('answer')
+                     select *
+                     from topTenPeaks;
+                                     
+                    """, compilerArgs);
         }
 
         catch (EPCompileException ex) {
@@ -100,20 +98,20 @@ public class EsperClient {
         });
 
         Random generator = new Random(2137);
-        Faker faker = new Faker();
+        Faker faker = new Faker(generator);
         String record;
 
         long startTime = System.currentTimeMillis();
         while (System.currentTimeMillis() < startTime + (1000L * howLongInSec)) {
             for (int i = 0; i < noOfRecordsPerSec; i++) {
-                generateMountainEventData(runtime, faker);
+                generateMountainEventData(runtime, faker, generator);
             }
             waitToEpoch();
         }
     }
 
-    private static void generateMountainEventData(EPRuntime runtime, Faker faker) {
-        Random random = new Random();
+    private static void generateMountainEventData(EPRuntime runtime, Faker faker, Random random) {
+//        Random random = new Random();
         ArrayList<String> possibleResults = new ArrayList<>() {
             {
                 add("summit-reached");

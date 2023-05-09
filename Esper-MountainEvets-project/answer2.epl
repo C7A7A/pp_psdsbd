@@ -1,0 +1,3 @@
+@name('answer')
+select peak_name, trip_leader, result, amount_people
+from MountainEvent(result="resignation-someone-missing", amount_people<3);

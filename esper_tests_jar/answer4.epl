@@ -1,0 +1,23 @@
+create window TopTen#length(10)#unique(peak_name)
+as (peak_name string, how_many long);
+
+insert into TopTen(peak_name, how_many)
+select peak_name, count(peak_name)
+from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+group by peak_name
+order by count(peak_name) desc
+limit 10;
+
+create window TopTen2#unique(peak_name)
+as (peak_name string, now long, how_many long);
+
+insert rstream into TopTen2(peak_name, now, how_many)
+select peak_name, count(peak_name), how_many
+from TopTen
+group by peak_name
+order by count(peak_name) desc;
+
+@name('answer')
+select peak_name, how_many
+from TopTen2
+where now = 0;

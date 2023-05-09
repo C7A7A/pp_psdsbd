@@ -1,4 +1,4 @@
-@name('answer')
+@name('solution')
 select * from MountainEvent
     match_recognize (
     partition by trip_leader
@@ -11,4 +11,4 @@ select * from MountainEvent
         A as A.result not in ("summit-reached", "base-reached"),
         B as B.amount_people < A.amount_people and B.result in ("summit-reached", "base-reached"),
         C as C.amount_people >= A.amount_people and C.result not in ("summit-reached", "base-reached")
-    )
+    );

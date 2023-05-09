@@ -1,0 +1,23 @@
+create window newTop#length(10) as (peak_name string, how_many long);
+
+insert istream into newTop(peak_name, how_many)
+select peak_name, count(peak_name)
+from MountainEvent#ext_timed_batch(java.sql.Timestamp.valueOf(its).getTime(), 5 sec)
+group by peak_name
+order by count(peak_name) desc
+limit 10;
+
+create window oldTop#length(10)
+as (peak_name string, how_many long);
+
+insert rstream into oldTop(peak_name, how_many)
+select peak_name, how_many
+from newTop;
+
+@name('solution')
+select o.peak_name as peak_name, o.how_many as how_many
+from oldTop as o
+left outer join newTop as n
+on o.peak_name = n.peak_name
+where n.peak_name is null
+order by o.how_many;

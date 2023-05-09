@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="alert-requests-kafka-streams">
+    <output-path>$PROJECT_DIR$/out/artifacts/alert_requests_kafka_streams</output-path>
+    <root id="archive" name="alert-requests-kafka-streams.jar">
+      <element id="module-output" name="AlertRequests" />
+    </root>
+  </artifact>
+</component>

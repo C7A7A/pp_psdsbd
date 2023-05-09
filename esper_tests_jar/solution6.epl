@@ -1,5 +1,5 @@
-@name('answer')
-select a.trip_leader as leader,
+@name('solution')
+select a.trip_leader as trip_leader,
 a.result as result_1, b.result as result_2, c.result as result_3
     from pattern [
         every (
@@ -19,4 +19,4 @@ a.result as result_1, b.result as result_2, c.result as result_3
                     y=MountainEvent(y.trip_leader != a.trip_leader or y.result not in ("summit-reached", "base-reached"))
                 ))
             )
-    ]
+    ];

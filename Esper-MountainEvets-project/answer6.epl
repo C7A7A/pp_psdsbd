@@ -1,0 +1,15 @@
+@name('answer')
+select r1.trip_leader as trip_leader,
+r1.result as result_1, r2.result as result_2, r3.result as result_3
+from pattern [
+    every (
+        r1=MountainEvent(result in ("summit-reached", "base-reached")) ->
+        r2=MountainEvent(r2.trip_leader = r1.trip_leader and result in ("summit-reached", "base-reached")) and not MountainEvent(trip_leader!=r1.trip_leader) ->
+        r3=MountainEvent(r3.trip_leader = r2.trip_leader and result in ("summit-reached", "base-reached")) and not MountainEvent(trip_leader!=r1.trip_leader) 
+    )
+    or every (
+        r1=MountainEvent(result not in ("summit-reached", "base-reached")) ->
+        r2=MountainEvent(r2.trip_leader = r1.trip_leader and result not in ("summit-reached", "base-reached")) and not MountainEvent(trip_leader!=r1.trip_leader) ->
+        r3=MountainEvent(r3.trip_leader = r2.trip_leader and result not in ("summit-reached", "base-reached")) and not MountainEvent(trip_leader!=r1.trip_leader) 
+    )
+];

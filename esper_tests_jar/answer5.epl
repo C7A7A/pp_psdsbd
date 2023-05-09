@@ -1,0 +1,8 @@
+@name('answer')
+select r1[0].result as result_1, r1[1].result as result_2, r1[2].result as result_3, 
+r1[0].its as its_1, r1[1].its as its_2, r1[2].its as its_3
+from pattern [ 
+  every ([3:] r1=MountainEvent(result in ("summit-reached", "base-reached")) where timer:within(5 sec)
+  until r2=MountainEvent(result not in ("summit-reached", "base-reached"))
+  ) 
+];
